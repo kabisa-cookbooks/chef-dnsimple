@@ -21,5 +21,6 @@ include_recipe 'build-essential'
 
 chef_gem 'fog' do
   version node['dnsimple']['fog_version']
+  options '--no-ri --no-rdoc'
   action :nothing
 end.run_action(:install)
