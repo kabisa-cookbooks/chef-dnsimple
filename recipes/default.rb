@@ -19,8 +19,19 @@
 
 include_recipe 'build-essential'
 
+value_for_platform_family(
+  'debian' => ['libxml2-dev', 'libxslt1-dev'],
+  'rhel' => ['libxml2-devel', 'libxslt-devel'],
+).each do |pkg|
+  package pkg do
+    action :nothing
+  end.run_action(:install)
+end
+
 chef_gem 'fog' do
   version node['dnsimple']['fog_version']
   options '--no-ri --no-rdoc'
   action :nothing
 end.run_action(:install)
+
+require 'fog'
