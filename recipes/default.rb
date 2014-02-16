@@ -23,5 +23,3 @@ chef_gem 'fog' do
   version node['dnsimple']['fog_version']
   action :nothing
 end.run_action(:install)
-
-require 'fog'
